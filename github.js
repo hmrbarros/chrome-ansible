@@ -33,7 +33,7 @@ GitHub.Blob = class {
   static detect() {
     const header = $('.blob-code:first').text();
 
-    if (header.match(/^\$ANSIBLE_VAULT;.+AES256$/) && !$('#decryptbtn').length) {
+    if (header.match(/^\$ANSIBLE_VAULT;.+AES256.*$/) && !$('#decryptbtn').length) {
       const container = $('.js-file-line-container');
       const original = container.html();
       const text_to_decrypt = $('.blob-code').not(':first').text();
@@ -178,7 +178,7 @@ GitHub.Diff = class {
       const file_name = $(file_header).attr('data-path');
       const file_anchor = $(file_header).attr('data-anchor');
 
-      if (context.match(/^[ +-]?\$ANSIBLE_VAULT;.+AES256$/) && !$('#' + file_anchor + '-decryptbtn').length) {
+      if (context.match(/^[ +-]?\$ANSIBLE_VAULT;.+AES256.*$/) && !$('#' + file_anchor + '-decryptbtn').length) {
         // hide the unified|split menu since this doesn't work in split mode
         $(".diffbar-item .BtnGroup").hide();
 
